@@ -1,4 +1,8 @@
 import type { MoneyValue, PublicInventoryDto } from "../hub/contract";
+import {
+  evaluatePriceFreshness,
+  type PriceGateThresholds,
+} from "../seo/content-gate";
 import { loadFixtureInventory, loadFixtureJson } from "./local";
 
 export type DeveloperRecord = {
@@ -154,12 +158,42 @@ export function developerOf(
   );
 }
 
+export function listingPriceCheckedAt(
+  listing: PublicInventoryDto,
+): string | undefined {
+  return listing.priceCheckedAt;
+}
+
+export function hideListingPrice(
+  listing: PublicInventoryDto,
+  now: Date,
+  thresholds?: PriceGateThresholds,
+): boolean {
+  if (!listing.price) {
+    return true;
+  }
+  if (!thresholds) {
+    return !listingPriceCheckedAt(listing);
+  }
+  return evaluatePriceFreshness(
+    listingPriceCheckedAt(listing),
+    now,
+    thresholds,
+  ).hidePrice;
+}
+
 export function minPriceForDevelopment(
   snapshot: CatalogSnapshot,
   developmentUid: string,
+  now: Date = new Date(),
+  thresholds?: PriceGateThresholds,
 ): string | undefined {
   const prices = snapshot.inventory
-    .filter((item) => item.developmentUid === developmentUid)
+    .filter(
+      (item) =>
+        item.developmentUid === developmentUid &&
+        !hideListingPrice(item, now, thresholds),
+    )
     .map((item) => formatMoney(item.price))
     .filter((value): value is string => Boolean(value))
     .map((value) => Number(value))
@@ -168,11 +202,4 @@ export function minPriceForDevelopment(
     return undefined;
   }
   return String(Math.min(...prices));
-}
-
-export function listingCheckedAt(
-  snapshot: CatalogSnapshot,
-  listing: PublicInventoryDto,
-): string | undefined {
-  return developmentOf(snapshot, listing)?.checkedAt;
 }

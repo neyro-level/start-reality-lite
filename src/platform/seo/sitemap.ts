@@ -5,7 +5,7 @@ import {
   findDeveloper,
   findDevelopment,
   findProperty,
-  listingCheckedAt,
+  listingPriceCheckedAt,
   propertyUrlParams,
 } from "../catalog/entities";
 import { buildHref, isFeatureEnabled } from "../grammar";
@@ -27,7 +27,7 @@ function factualLastModified(
     if (!listing) {
       return undefined;
     }
-    const checkedAt = listingCheckedAt(snapshot, listing);
+    const checkedAt = listingPriceCheckedAt(listing);
     if (!checkedAt) {
       return undefined;
     }
@@ -48,8 +48,8 @@ function factualLastModified(
   if (!inventoryGated) {
     return undefined;
   }
-  const dates = snapshot.developments
-    .map((item) => item.checkedAt)
+  const dates = snapshot.inventory
+    .map((item) => listingPriceCheckedAt(item))
     .filter((value): value is string => Boolean(value));
   if (dates.length === 0) {
     return undefined;

@@ -3,7 +3,7 @@ import type { CatalogSnapshot } from "../catalog/entities";
 import {
   findDevelopment,
   findProperty,
-  listingCheckedAt,
+  listingPriceCheckedAt,
 } from "../catalog/entities";
 import { buildHref, type FeatureFlags, type GrammarConfig } from "../grammar";
 import { isPubliclyListed, normalizeLifecycle } from "../lifecycle";
@@ -128,7 +128,10 @@ export function evaluatePageGate(
     if (!listing) {
       return { gate: "FAIL", hidePrice: false };
     }
-    const checkedAt = listingCheckedAt(snapshot, listing);
+    if (!listing.price) {
+      return { gate: "PASS", hidePrice: true };
+    }
+    const checkedAt = listingPriceCheckedAt(listing);
     const price = evaluatePriceFreshness(checkedAt, now, thresholds);
     return {
       gate: price.gate,
@@ -146,25 +149,32 @@ export function evaluatePageGate(
       now,
       thresholds,
     );
-    const price = evaluatePriceFreshness(
-      development?.checkedAt,
-      now,
-      thresholds,
+    const priced = snapshot.inventory.filter(
+      (item) => item.developmentUid === development.uid && item.price,
     );
+    const results = priced.map((item) =>
+      evaluatePriceFreshness(listingPriceCheckedAt(item), now, thresholds),
+    );
+    const hidePrice =
+      results.length === 0 || results.every((item) => item.hidePrice);
+    const priceGate =
+      results.length === 0 || results.some((item) => item.gate === "PASS")
+        ? "PASS"
+        : "FAIL";
     return {
-      gate: textGate === "FAIL" || price.gate === "FAIL" ? "FAIL" : "PASS",
-      hidePrice: price.hidePrice,
+      gate: textGate === "FAIL" || priceGate === "FAIL" ? "FAIL" : "PASS",
+      hidePrice,
       checkedAt: development?.checkedAt,
     };
   }
-  const dates = snapshot.developments.map((item) => item.checkedAt);
-  const results = dates.map((checkedAt) =>
-    evaluatePriceFreshness(checkedAt, now, thresholds),
+  const priced = snapshot.inventory.filter((item) => item.price);
+  const results = priced.map((item) =>
+    evaluatePriceFreshness(listingPriceCheckedAt(item), now, thresholds),
   );
   const hidePrice =
     results.length === 0 || results.every((item) => item.hidePrice);
   const gate =
-    results.length > 0 && results.some((item) => item.gate === "PASS")
+    results.length === 0 || results.some((item) => item.gate === "PASS")
       ? "PASS"
       : "FAIL";
   return { gate, hidePrice };

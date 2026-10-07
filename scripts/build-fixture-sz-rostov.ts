@@ -108,6 +108,7 @@ const inventory = Array.from({ length: 300 }, (_, index) => {
       currency: "RUB",
       scale: 2,
     },
+    priceCheckedAt: "2026-09-01T00:00:00Z",
     addressPublic: `${district.name}, дом ${1 + (index % 40)}`,
     geoPrecision: "street",
     slug: `listing-${index + 1}`,
