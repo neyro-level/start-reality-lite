@@ -65,5 +65,5 @@ function resign(name: string) {
   console.log("resigned", name, developers);
 }
 
-resign("fixture-sz-rostov");
+resign("fixture-demo");
 resign("fixture-alt");

@@ -1,5 +1,4 @@
-export const PROJECT_FIXTURE =
-  process.env.PROJECT_FIXTURE ?? "fixture-sz-rostov";
+export const PROJECT_FIXTURE = process.env.PROJECT_FIXTURE ?? "fixture-demo";
 
 export const data = {
   fixtureDir: `fixtures/${PROJECT_FIXTURE}`,

@@ -88,7 +88,7 @@ const primaryInventory = loadFixtureInventory(root, data.fixtureDir);
 const primarySnapshot = verifyCandidate({
   candidateDir: join(root, data.fixtureDir),
   trust: loadTrust(data.fixtureDir),
-  expectedProjectId: "fixture-sz-rostov",
+  expectedProjectId: "fixture-demo",
 });
 const altSnapshot = verifyCandidate({
   candidateDir: join(root, altDir),
@@ -98,7 +98,7 @@ const altSnapshot = verifyCandidate({
 
 check(
   "primary-snapshot-ok",
-  primarySnapshot.manifest.projectId === "fixture-sz-rostov",
+  primarySnapshot.manifest.projectId === "fixture-demo",
 );
 check("alt-snapshot-ok", altSnapshot.manifest.projectId === "fixture-alt");
 check("primary-inventory-loaded", primaryInventory.length > 0);
@@ -113,7 +113,7 @@ check(
   overlay.features.vtorichka !== primaryFeatures.vtorichka &&
     overlay.features.yurist !== primaryFeatures.yurist,
 );
-const primaryFixtureDir = "fixtures/fixture-sz-rostov";
+const primaryFixtureDir = "fixtures/fixture-demo";
 const primaryContacts = JSON.parse(
   readFileSync(join(root, primaryFixtureDir, "contacts.json"), "utf8"),
 ) as Array<{ phone: string; email: string }>;
@@ -152,7 +152,7 @@ check(
 
 if (!failed) {
   runChecks("primary-fixture", {
-    PROJECT_FIXTURE: "fixture-sz-rostov",
+    PROJECT_FIXTURE: "fixture-demo",
   });
 }
 if (!failed) {
@@ -198,7 +198,7 @@ function collectFiles(dir: string, files: string[] = []): string[] {
 
 function isScanTarget(file: string): boolean {
   const rel = file.slice(root.length + 1).replaceAll("\\", "/");
-  if (rel.includes("fixtures/fixture-sz-rostov")) {
+  if (rel.includes("fixtures/fixture-demo")) {
     return false;
   }
   if (rel.includes("docs/seo")) {

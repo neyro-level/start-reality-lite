@@ -5,18 +5,18 @@ plan_status: APPROVED
 approved_by: owner
 approved_at: 2026-10-07
 canonical_plan: docs/МАСТЕР_ПЛАН_SRL_NEUTRAL.md
-current_epic: E1
+current_epic: E2
 next_ready:
-  - E1
-current_branch: epic/E1-demo-identity
+  - E2
+current_branch: epic/E2-fixture-demo
 delivery_mode: PR_ONLY
 delivery_profile: COMMERCIAL
 ams_profile: REALTY
 owner_pause: false
 closed_epics:
   - E0
-pending_epics:
   - E1
+pending_epics:
   - E2
   - E3
   - E4

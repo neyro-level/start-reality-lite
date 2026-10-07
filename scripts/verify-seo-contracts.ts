@@ -206,10 +206,7 @@ check(
 check("sitemap-staging-empty", sitemapAllowed("staging") === false);
 check("sitemap-private-empty", sitemapAllowed("private") === false);
 
-const repo = SnapshotRepository.fromRevisionDir(
-  root,
-  "fixtures/fixture-sz-rostov",
-);
+const repo = SnapshotRepository.fromRevisionDir(root, "fixtures/fixture-demo");
 const snapshot = repo.catalogSnapshot();
 const context = metadataContext();
 const publicContext = { ...context, indexingMode: "public" as const };

@@ -2,7 +2,7 @@ import { type ChildProcess, spawn } from "node:child_process";
 import { existsSync, readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 
-const SMOKE_FIXTURE = "fixture-sz-rostov";
+const SMOKE_FIXTURE = "fixture-demo";
 
 const PORT = process.env.VERIFY_HTTP_PORT ?? "4017";
 const ORIGIN = `http://127.0.0.1:${PORT}`;

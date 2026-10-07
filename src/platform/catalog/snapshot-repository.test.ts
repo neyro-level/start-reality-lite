@@ -34,7 +34,7 @@ describe("honest catalog DTO", () => {
     const cwd = process.cwd();
     const fresh = SnapshotRepository.fromRevisionDir(
       cwd,
-      "fixtures/fixture-sz-rostov",
+      "fixtures/fixture-demo",
       true,
       { thresholds, now: new Date("2026-09-20T00:00:00Z") },
     );
@@ -44,7 +44,7 @@ describe("honest catalog DTO", () => {
 
     const stale = SnapshotRepository.fromRevisionDir(
       cwd,
-      "fixtures/fixture-sz-rostov",
+      "fixtures/fixture-demo",
       true,
       { thresholds, now: new Date("2027-01-01T00:00:00Z") },
     );
@@ -131,7 +131,7 @@ describe("honest catalog DTO", () => {
   it("does not invent a developer slug", async () => {
     const developers = await SnapshotRepository.fromRevisionDir(
       process.cwd(),
-      "fixtures/fixture-sz-rostov",
+      "fixtures/fixture-demo",
       true,
       { thresholds, now: new Date("2026-09-20T00:00:00Z") },
     ).listDevelopers();

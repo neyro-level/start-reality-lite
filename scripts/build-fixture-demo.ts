@@ -5,9 +5,9 @@ import { fileURLToPath } from "node:url";
 import { REQUIRED_DATASET_KINDS } from "../src/platform/snapshot/constants";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
-const outDir = join(root, "fixtures", "fixture-sz-rostov");
+const outDir = join(root, "fixtures", "fixture-demo");
 
-const PROJECT_ID = "fixture-sz-rostov";
+const PROJECT_ID = "fixture-demo";
 const KEY_ID = "fixture-local";
 const ALPHABET = "abcdefghijklmnopqrstuvwxyz234567";
 
@@ -19,15 +19,15 @@ const PRIVATE_PKCS8_B64 =
 
 const DISTRICTS = [
   "Центр",
-  "Западный",
   "Северный",
-  "Сельмаш",
-  "Нахичевань",
-  "Левенцовка",
-  "Суворовский",
-  "Темерник",
-  "Александровка",
-  "Чкаловский",
+  "Южный",
+  "Западный",
+  "Восточный",
+  "Нагорный",
+  "Речной",
+  "Парковый",
+  "Солнечный",
+  "Заречный",
 ];
 
 function publicUrlId(index: number, length = 6): string {
@@ -189,7 +189,7 @@ writeFileSync(join(outDir, "keys", "pkcs8.b64"), `${PRIVATE_PKCS8_B64}\n`);
 writeFileSync(
   join(outDir, "README.md"),
   [
-    "# fixture-sz-rostov",
+    "# fixture-demo",
     "",
     "Local Hub 3.1.2 snapshot for Lite: 10 districts, 20 developers, 300 apartments.",
     "Signed with the fixture-only Ed25519 key in `trust.json`.",

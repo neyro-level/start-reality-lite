@@ -74,7 +74,7 @@ export async function runSnapshotJobs(input: {
   if (!env.SNAPSHOT_STORE_DIR) {
     throw new Error("SNAPSHOT_STORE_DIR is required when DATA_MODE=snapshot");
   }
-  const fixture = env.PROJECT_FIXTURE ?? "fixture-sz-rostov";
+  const fixture = env.PROJECT_FIXTURE ?? "fixture-demo";
   const store = openSnapshotStore(env.SNAPSHOT_STORE_DIR);
   const trust = loadTrustSetFromFile(
     resolveTrustFile(cwd, fixture, env.SNAPSHOT_STORE_DIR),

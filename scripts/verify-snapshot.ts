@@ -600,7 +600,7 @@ const missingSig = writeCandidate({
 rmSync(join(missingSig, "manifest.sig"), { force: true });
 check("missing-detached-sig-reject", apply(missingSig).status === "rejected");
 
-const fixtureDir = join(process.cwd(), "fixtures", "fixture-sz-rostov");
+const fixtureDir = join(process.cwd(), "fixtures", "fixture-demo");
 const fixtureTrust = JSON.parse(
   readFileSync(join(fixtureDir, "trust.json"), "utf8"),
 ) as { keyId: string; publicKeySpkiBase64: string };
@@ -614,7 +614,7 @@ const fixtureApply = applyLocalSnapshot({
   storeRoot: fixtureStore,
   candidateDir: fixtureDir,
   trust: fixtureKeys,
-  expectedProjectId: "fixture-sz-rostov",
+  expectedProjectId: "fixture-demo",
 });
 check(
   "fixture-apply",

@@ -6,7 +6,7 @@ import { loadEnv } from "../platform/env";
 import { loadRepository, resetRepositoryCache } from "./runtime";
 
 const cwd = process.cwd();
-const fixture = join(cwd, "fixtures", "fixture-sz-rostov");
+const fixture = join(cwd, "fixtures", "fixture-demo");
 
 afterEach(() => {
   resetRepositoryCache();

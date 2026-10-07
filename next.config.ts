@@ -5,7 +5,7 @@ import { media } from "./src/project/media.config";
 
 const nextConfig: NextConfig = {
   env: {
-    PROJECT_FIXTURE: process.env.PROJECT_FIXTURE ?? "fixture-sz-rostov",
+    PROJECT_FIXTURE: process.env.PROJECT_FIXTURE ?? "fixture-demo",
   },
   allowedDevOrigins: ["127.0.0.1", "localhost"],
   trailingSlash: true,

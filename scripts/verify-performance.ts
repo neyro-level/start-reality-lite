@@ -30,7 +30,7 @@ async function main() {
   const started = Date.now();
   const repo = SnapshotRepository.fromRevisionDir(
     root,
-    "fixtures/fixture-sz-rostov",
+    "fixtures/fixture-demo",
     true,
     {
       thresholds: {
