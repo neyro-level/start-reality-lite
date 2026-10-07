@@ -4,12 +4,12 @@
 
 | Файл | Роль |
 |---|---|
-| `МАСТЕР_ПЛАН_SRL_NEUTRAL.md` | Мастер-план `SRL-NEUTRAL-TEMPLATE` v1 **ACTIVE** |
+| `МАСТЕР_ПЛАН_SRL_NEUTRAL.md` | Мастер-план `SRL-NEUTRAL-TEMPLATE` v1 **COMPLETE** (не расширять) |
 | `МАСТЕР_ПЛАН_TEMPLATE_FINAL_CLEANUP.md` | Предшественник `SOUZ-TEMPLATE-FINAL-CLEANUP` v1 **COMPLETE** (не расширять) |
 | `МАСТЕР_ПЛАН_TEMPLATE_HARDENING.md` | Предшественник `SOUZ-TEMPLATE-HARDENING` v1 **COMPLETE** (не расширять) |
 | `ФИНАЛЬНЫЙ_МАСТЕР_ПЛАН.md` | Предшественник `SOUZ-TEMPLATE-FREEZE` v2 **COMPLETE** (не расширять) |
 | `task-manager-inventory.v2.json` | Inventory Task Manager `souztf` (закрытая программа Freeze; не трогать) |
-| `DELIVERY_STATE.yaml` | Delivery state активного плана |
+| `DELIVERY_STATE.yaml` | Delivery state: **COMPLETE**, активного плана нет |
 | `SOUZ_DESIGN_SYSTEM.md` | Дизайн-система шаблона (палитра `--sr-*`) |
 | `template/PROJECT_DESIGN_SYSTEM.md` | Заготовка дизайн-системы для нового клиента |
 | `standards/AMS_SITE_CORE.md` | Конституция сайтов AMS |

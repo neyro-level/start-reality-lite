@@ -4,7 +4,8 @@
 
 ## Plan
 
-- Активный: `SRL-NEUTRAL-TEMPLATE` v1 — `docs/МАСТЕР_ПЛАН_SRL_NEUTRAL.md`
+- Neutral: `SRL-NEUTRAL-TEMPLATE` v1 **COMPLETE** — `docs/МАСТЕР_ПЛАН_SRL_NEUTRAL.md` (не расширять)
+- **Активного плана нет.** Новый Plan ID — только по явной команде владельца.
 - Predecessor: `SOUZ-TEMPLATE-FINAL-CLEANUP` v1 COMPLETE — `docs/МАСТЕР_ПЛАН_TEMPLATE_FINAL_CLEANUP.md` (не расширять)
 - Hardening: `SOUZ-TEMPLATE-HARDENING` v1 **COMPLETE** — `docs/МАСТЕР_ПЛАН_TEMPLATE_HARDENING.md` (не расширять)
 - Freeze: `SOUZ-TEMPLATE-FREEZE` v2 COMPLETE — `docs/ФИНАЛЬНЫЙ_МАСТЕР_ПЛАН.md` (не расширять)

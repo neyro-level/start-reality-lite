@@ -5,10 +5,11 @@ Plan ID: SRL-NEUTRAL-TEMPLATE
 Canonical file: docs/МАСТЕР_ПЛАН_SRL_NEUTRAL.md
 Predecessor: SOUZ-TEMPLATE-FINAL-CLEANUP v1 COMPLETE
 Version: v1
-Status: APPROVED
-Phase: WORK
+Status: COMPLETE
+Phase: CLOSED
 approved_by: owner
 approved_at: 2026-10-07
+completed_at: 2026-10-07
 PROJECT_CLASS: COMMERCIAL
 DELIVERY_PROFILE: COMMERCIAL
 AMS_PROFILE: REALTY

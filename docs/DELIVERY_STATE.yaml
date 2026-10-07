@@ -1,14 +1,14 @@
 plan_id: SRL-NEUTRAL-TEMPLATE
 plan_version: v1
-status: ACTIVE
-plan_status: APPROVED
+status: COMPLETE
+plan_status: COMPLETE
 approved_by: owner
 approved_at: 2026-10-07
+completed_at: 2026-10-07
 canonical_plan: docs/МАСТЕР_ПЛАН_SRL_NEUTRAL.md
-current_epic: E3
-next_ready:
-  - E3
-current_branch: epic/E3-docs-redaction
+current_epic: none
+next_ready: []
+current_branch: epic/E4-copy-contract
 delivery_mode: PR_ONLY
 delivery_profile: COMMERCIAL
 ams_profile: REALTY
@@ -17,9 +17,9 @@ closed_epics:
   - E0
   - E1
   - E2
-pending_epics:
   - E3
   - E4
+pending_epics: []
 predecessor:
   plan_id: SOUZ-TEMPLATE-FINAL-CLEANUP
   plan_version: v1
@@ -33,5 +33,5 @@ prior_freeze:
   freeze_tag: reference-baseline-template-freeze
   sha: ccba58d929dc342ce0baa2f40796d7057fb4de1c
 notes: >
-  Neutral template program. Previous freeze tags are immutable.
-  Git history is not rewritten. No production.
+  Neutral template COMPLETE. Copy clean HEAD, not git history.
+  Palette --sr-* unchanged. No new freeze tag. No production.

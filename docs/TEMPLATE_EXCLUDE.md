@@ -1,10 +1,16 @@
-# Что не входит в шаблон следующего проекта
+# Что не входит в копию шаблона
 
-- Production deploy, `INDEXING_MODE=public`, живой AMS Hub и production SMTP.
-- Отдельный template repository — только по команде владельца после `reference-baseline-template-v3`.
-- Playwright как merge-gate.
-- Реализация Search / Favorites, journal content, `service` / `dual` / `crm` leads.
+Этот репозиторий — шаблон. Копировать чистый HEAD, не историю git.
+
+Не копировать и не тащить в новый клиентский checkout:
+
+- `.beads`, локальные worktree, Cursor plan file;
+- секреты, `.env`, spool keys, PKCS8 кроме TEST-фикстур;
+- клиентские медиа-оригиналы и внешние CDN-аккаунты;
+- production deploy, `INDEXING_MODE=public`, живой AMS Hub и production SMTP.
+
+Вне scope шаблона как продукта:
+
+- Playwright как merge-gate;
+- реализация Search / Favorites, journal content, `service` / `dual` / `crm` leads;
 - PostgreSQL, Payload, Prisma, CMS, `DATABASE_URL`.
-- Секреты, `.env`, spool keys, PKCS8 кроме TEST-фикстур.
-- `.beads`, локальные worktree, Cursor plan file.
-- Клиентские медиа-оригиналы и внешние CDN-аккаунты.
