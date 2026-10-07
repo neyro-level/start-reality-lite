@@ -18,12 +18,11 @@ services:
       <<: *app-env
     volumes:
       - lite-data:/data
-  sync:
+  worker:
     build: .
-    command: ["node", "dist/sync-worker.cjs"]
+    command: ["node", "dist/worker.cjs"]
     environment:
       <<: *app-env
-      DATA_MODE: snapshot
     volumes:
       - lite-data:/data
 volumes:
