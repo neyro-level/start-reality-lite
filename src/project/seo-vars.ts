@@ -7,9 +7,19 @@ import {
   findDevelopment,
   findProperty,
   formatMoney,
+  hideListingPrice,
   minPriceForDevelopment,
   roomsOf,
 } from "@/platform/catalog/entities";
+import { seo } from "./seo.config";
+
+function priceGateThresholds() {
+  return {
+    hideAfterDays: seo.priceHideAfterDays,
+    failAfterDays: seo.priceGateFailAfterDays,
+    developmentTextFailAfterDays: seo.developmentTextFailAfterDays,
+  };
+}
 
 function factNumber(
   facts: CatalogSnapshot["inventory"][number]["facts"],
@@ -42,7 +52,9 @@ export function seoVarsForPage(
       "ЖК|адрес": complexOrAddress,
       Название: development?.name ?? listing.addressPublic,
       Застройщик: developerOf(snapshot, development)?.name,
-      price: formatMoney(listing.price),
+      price: hideListingPrice(listing, new Date(), priceGateThresholds())
+        ? undefined
+        : formatMoney(listing.price),
       slug: listing.slug || listing.publicUrlId,
       publicUrlId: listing.publicUrlId,
     };
@@ -55,7 +67,12 @@ export function seoVarsForPage(
     return {
       Название: development.name,
       Застройщик: developerOf(snapshot, development)?.name,
-      minPrice: minPriceForDevelopment(snapshot, development.uid),
+      minPrice: minPriceForDevelopment(
+        snapshot,
+        development.uid,
+        new Date(),
+        priceGateThresholds(),
+      ),
       slug: developmentUrlSlug(development),
     };
   }

@@ -39,6 +39,12 @@ export function listing(index: number, extra: Record<string, unknown> = {}) {
     media: [],
     status: "ACTIVE",
     descriptionText: "TEST",
+    price: {
+      amount: String(4_500_000_00 + index * 10_000_00),
+      currency: "RUB",
+      scale: 2,
+    },
+    priceCheckedAt: "2026-09-01T00:00:00Z",
     ...extra,
   };
 }

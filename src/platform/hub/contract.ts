@@ -176,6 +176,19 @@ export const PublicInventoryDtoSchema = z
     transactionType: TransactionTypeSchema,
     dealKind: DealKindSchema.optional(),
     price: MoneyValueSchema.optional(),
+    priceCheckedAt: z
+      .string()
+      .refine((value) => {
+        if (
+          !/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d+)?(?:Z|[+-]\d{2}:\d{2})$/.test(
+            value,
+          )
+        ) {
+          return false;
+        }
+        return !Number.isNaN(new Date(value).getTime());
+      }, "priceCheckedAt must be ISO datetime")
+      .optional(),
     currency: z.string().length(3).optional(),
     addressPublic: z.string().min(1),
     geoPublic: GeoPublicSchema.optional(),

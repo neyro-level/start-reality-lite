@@ -1,42 +1,42 @@
-plan_id: SOUZ-TEMPLATE-HARDENING
+plan_id: SOUZ-TEMPLATE-FINAL-CLEANUP
 plan_version: v1
 status: COMPLETE
 plan_status: COMPLETE
 approved_by: owner
 approved_at: 2026-10-07
 completed_at: 2026-10-07
-canonical_plan: docs/МАСТЕР_ПЛАН_TEMPLATE_HARDENING.md
+canonical_plan: docs/МАСТЕР_ПЛАН_TEMPLATE_FINAL_CLEANUP.md
 current_epic: none
 next_ready: []
-current_branch: main
+current_branch: epic/TF1-final-template-cleanup
 delivery_mode: PR_ONLY
 delivery_profile: COMMERCIAL
 ams_profile: REALTY
 owner_pause: false
 closed_epics:
-  - TH0
-  - TH1
-  - TH2
-  - TH3
-  - TH4
-  - TH5
-  - TH6
-  - TH7
-  - TH8
-  - TH9
+  - TF1
 pending_epics: []
-last_merged:
-  epic: TH9
-  pr: 56
-  sha: 63360437e4b59399ede2b64c0b893a8d66eef95a
-  gate: 287
-freeze_tag: reference-baseline-template-v2
 predecessor:
+  plan_id: SOUZ-TEMPLATE-HARDENING
+  plan_version: v1
+  status: COMPLETE
+  freeze_tag: reference-baseline-template-v2
+  sha: 63360437e4b59399ede2b64c0b893a8d66eef95a
+  pr: 56
+  gate: 287
+prior_freeze:
   plan_id: SOUZ-TEMPLATE-FREEZE
   plan_version: v2
   status: COMPLETE
   freeze_tag: reference-baseline-template-freeze
   sha: ccba58d929dc342ce0baa2f40796d7057fb4de1c
+audit_prod:
+  command: pnpm audit --prod
+  critical: 0
+  high: 1
+  note: >
+    braces <=3.0.3 via shadcn/fast-glob/micromatch (GHSA-vfj7-8cjw-p6xm).
+    No patched version. Documented, no extra epic.
 notes: >
-  Hardening COMPLETE. Tag reference-baseline-template-v2 is applied on exact
-  merged main after TH9 merge-gate. No production. Template repo split is owner command.
+  Final template cleanup COMPLETE. Previous freeze tags are immutable.
+  Tag reference-baseline-template-v3 after merge-gate on exact SHA. No production.

@@ -65,7 +65,17 @@ for (const row of registry) {
   check(`registry-in-grammar:${row.pageKey}`, grammarKeys.has(row.pageKey));
 }
 
+check("search-disabled", features.search === "DISABLED");
+check("favorites-disabled", features.favorites === "DISABLED");
+check("search-href-absent", !buildHref(grammar, features, "search"));
+check("favorites-href-absent", !buildHref(grammar, features, "favorites"));
+
 const header = navigation.header.flatMap(
+  (group) =>
+    resolveNavGroup(group, grammar, features, registry, navigation.labels)
+      .items,
+);
+const footer = navigation.footer.flatMap(
   (group) =>
     resolveNavGroup(group, grammar, features, registry, navigation.labels)
       .items,
@@ -77,7 +87,13 @@ check(
 );
 check(
   "nav-hides-favorites",
-  header.every((item) => !item.href.includes("izbrannoe")),
+  header.every((item) => !item.href.includes("izbrannoe")) &&
+    footer.every((item) => !item.href.includes("izbrannoe")),
+);
+check(
+  "nav-hides-search",
+  header.every((item) => !item.href.includes("/poisk/")) &&
+    footer.every((item) => !item.href.includes("/poisk/")),
 );
 const yuristOff = resolveNavGroup(
   navigation.header[1],

@@ -65,4 +65,18 @@ describe("loadEnv", () => {
       }),
     ).toThrow(/LOCAL_SNAPSHOT_DIR/);
   });
+
+  it("allows LEAD_TRANSPORT=none only in local/dev", () => {
+    expect(loadEnv({ APP_ENV: "local" }).LEAD_TRANSPORT).toBe("none");
+    expect(() =>
+      loadEnv({
+        APP_ENV: "production",
+        DATA_MODE: "local",
+        LOCAL_SNAPSHOT_DIR: "/data/local",
+        LEAD_SPOOL_KEY: spoolKey,
+        LEAD_SPOOL_DIR: spoolDir,
+        LEAD_TRANSPORT: "none",
+      }),
+    ).toThrow(/LEAD_TRANSPORT=none/);
+  });
 });

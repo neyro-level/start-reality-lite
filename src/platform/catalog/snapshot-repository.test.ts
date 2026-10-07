@@ -55,6 +55,79 @@ describe("honest catalog DTO", () => {
     expect(development?.minPrice).toBeNull();
   });
 
+  it("uses listing priceCheckedAt for public price", async () => {
+    const now = new Date("2026-10-07T00:00:00Z");
+    const contact = {
+      phone: "+79885552027",
+      email: null,
+      messengers: null,
+      address: null,
+      hours: null,
+    };
+    const base = {
+      ...listing({ rooms: 1, totalAreaM2: 32 }),
+      uid: "inv-price",
+      publicUrlId: "ccccc2",
+      propertyType: "APARTMENT" as const,
+      developmentUid: "dvl-1",
+      price: { amount: "450000000", currency: "RUB", scale: 2 as const },
+    };
+    const snapshot = {
+      developments: [
+        {
+          uid: "dvl-1",
+          publicUrlId: "ddddd2",
+          slug: "zhk-1",
+          name: "TEST development",
+          checkedAt: "2020-01-01T00:00:00Z",
+        },
+      ],
+      developers: [],
+    };
+    const repo = (inventory: PublicInventoryDto[]) =>
+      new SnapshotRepository(
+        { ...snapshot, inventory },
+        [],
+        [],
+        contact,
+        true,
+        { thresholds, now },
+      );
+
+    const fresh = await repo([
+      { ...base, priceCheckedAt: "2026-09-20T00:00:00Z" },
+    ]).listProperties();
+    expect(fresh[0]?.hidePrice).toBe(false);
+    expect(fresh[0]?.price?.amount).toBe("450000000");
+
+    const stale = await repo([
+      { ...base, priceCheckedAt: "2026-07-01T00:00:00Z" },
+    ]).listProperties();
+    expect(stale[0]?.hidePrice).toBe(true);
+    expect(stale[0]?.price).toBeNull();
+
+    const missing = await repo([base]).listProperties();
+    expect(missing[0]?.hidePrice).toBe(true);
+    expect(missing[0]?.price).toBeNull();
+
+    const mixed = await repo([
+      {
+        ...base,
+        uid: "fresh",
+        publicUrlId: "eeeee2",
+        priceCheckedAt: "2026-09-20T00:00:00Z",
+      },
+      {
+        ...base,
+        uid: "stale",
+        publicUrlId: "fffff2",
+        price: { amount: "100000000", currency: "RUB", scale: 2 as const },
+        priceCheckedAt: "2026-07-01T00:00:00Z",
+      },
+    ]).listDevelopments();
+    expect(mixed[0]?.minPrice?.amount).toBe("450000000");
+  });
+
   it("does not invent a developer slug", async () => {
     const developers = await SnapshotRepository.fromRevisionDir(
       process.cwd(),

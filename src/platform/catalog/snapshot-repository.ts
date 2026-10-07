@@ -1,9 +1,6 @@
 import type { PublicInventoryDto } from "../hub/contract";
 import { isPubliclyListed, normalizeLifecycle } from "../lifecycle";
-import {
-  evaluatePriceFreshness,
-  type PriceGateThresholds,
-} from "../seo/content-gate";
+import type { PriceGateThresholds } from "../seo/content-gate";
 import type {
   AgentCardDTO,
   AgentDetailsDTO,
@@ -21,7 +18,7 @@ import {
   type CatalogSnapshot,
   developerOf,
   developmentUrlSlug,
-  listingCheckedAt,
+  hideListingPrice,
   loadCatalogSnapshot,
   roomsOf,
 } from "./entities";
@@ -282,7 +279,7 @@ export class SnapshotRepository implements RealtyRepository {
       area: areaOf(listing),
       floor: floorOf(listing),
       floorsTotal: floorsTotalOf(listing),
-      price: money(listing.price),
+      price: this.publicPriceOf(listing),
       hidePrice: this.hidePriceOf(listing),
       description:
         listing.descriptionText ?? listing.descriptionHtmlSafe ?? null,
@@ -394,7 +391,7 @@ export class SnapshotRepository implements RealtyRepository {
       title: this.propertyTitle(listing),
       rooms: roomsOf(listing),
       area: areaOf(listing),
-      price: money(listing.price),
+      price: this.publicPriceOf(listing),
       hidePrice: this.hidePriceOf(listing),
       geoSlug: this.geos[0]?.slug ?? null,
       geoPrecision: listing.geoPrecision,
@@ -406,8 +403,8 @@ export class SnapshotRepository implements RealtyRepository {
     development: CatalogSnapshot["developments"][number],
   ): DevelopmentCardDTO {
     const prices = (this.byDevelopmentUid.get(development.uid) ?? [])
-      .filter((item) => item.price && !this.hidePriceOf(item))
-      .map((item) => item.price as MoneyDTO);
+      .map((item) => this.publicPriceOf(item))
+      .filter((item): item is MoneyDTO => Boolean(item));
     const minPrice =
       prices.length === 0
         ? null
@@ -435,15 +432,15 @@ export class SnapshotRepository implements RealtyRepository {
   }
 
   private hidePriceOf(listing: PublicInventoryDto): boolean {
-    const checkedAt = listingCheckedAt(this.snapshot, listing);
-    if (!this.priceGate) {
-      return !checkedAt;
-    }
-    return evaluatePriceFreshness(
-      checkedAt,
-      this.priceGate.now ?? new Date(),
-      this.priceGate.thresholds,
-    ).hidePrice;
+    return hideListingPrice(
+      listing,
+      this.priceGate?.now ?? new Date(),
+      this.priceGate?.thresholds,
+    );
+  }
+
+  private publicPriceOf(listing: PublicInventoryDto): MoneyDTO | null {
+    return this.hidePriceOf(listing) ? null : money(listing.price);
   }
 
   private geoForPrecision(precision: GeoDTO["precision"]): GeoDTO | null {

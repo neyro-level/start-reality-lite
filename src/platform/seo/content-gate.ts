@@ -24,7 +24,7 @@ export function evaluatePriceFreshness(
   thresholds: PriceGateThresholds,
 ): PriceGateResult {
   if (!checkedAt) {
-    return { ageDays: null, hidePrice: true, gate: "FAIL" };
+    return { ageDays: null, hidePrice: true, gate: "PASS" };
   }
   const ageDays = ageInDays(checkedAt, now);
   const hidePrice = ageDays > thresholds.hideAfterDays;

@@ -61,6 +61,7 @@ const inventory = parsePublicInventoryDto({
   transactionType: "SALE",
   dealKind: "PRIMARY_SALE",
   price: { amount: "12500000", currency: "RUB", scale: 2 },
+  priceCheckedAt: "2026-09-01T00:00:00Z",
   addressPublic: "Public street",
   geoPrecision: "street",
   facts: { lotAreaM2: 640 },
