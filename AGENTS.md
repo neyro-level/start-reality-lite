@@ -6,8 +6,8 @@
 
 - Predecessor: `SOUZ-TEMPLATE-FREEZE` v2 COMPLETE — `docs/ФИНАЛЬНЫЙ_МАСТЕР_ПЛАН.md` (не расширять)
 - Hardening: `SOUZ-TEMPLATE-HARDENING` v1 **COMPLETE** — `docs/МАСТЕР_ПЛАН_TEMPLATE_HARDENING.md` (не расширять)
-- **Активного плана нет.** Новый Plan ID — только по явной команде владельца.
-- Freeze tag: `reference-baseline-template-v2`
+- **Активный план:** `SOUZ-TEMPLATE-FINAL-CLEANUP` v1 — `docs/МАСТЕР_ПЛАН_TEMPLATE_FINAL_CLEANUP.md`
+- Freeze tag: `reference-baseline-template-v2` (не изменять)
 - Standards: `docs/standards/`
 - Design system: `docs/SOUZ_DESIGN_SYSTEM.md`
 - Predecessor archive: `docs/archive/` (не Source of Truth; Beads Lite не трогать)
@@ -31,7 +31,7 @@ AMS SITE CORE
 - `AMS_PROFILE=REALTY`, `PROJECT_CLASS=COMMERCIAL`, `DELIVERY_PROFILE=COMMERCIAL`
 - `DATA_MODE=snapshot | local`; БД нет: запрещены PostgreSQL, Payload, Prisma, CMS и `DATABASE_URL`
 - Git: SourceCraft primary, `PR_ONLY`, лёгкая проверка на PR, один ручной `merge-gate` перед merge
-- Production этим hardening-планом не делается
+- Production этим планом не делается
 - Платформа: `src/platform/**`. Проектный слой: `src/project/**` и `docs/seo/**`
 - Единственная проектная дизайн-система: `docs/SOUZ_DESIGN_SYSTEM.md`
 
