@@ -1,6 +1,6 @@
-# Союз Ростов Light Realty
+# Start Reality Lite
 
-Коммерческий AMS Realty Lite сайт на Next.js 16 без БД: snapshot / local, Repository, SOUZ Design System.
+Коммерческий AMS Realty Lite шаблон на Next.js 16 без БД: snapshot / local, Repository, дизайн-система с палитрой `--sr-*`.
 
 ## Стек
 
