@@ -1,7 +1,7 @@
 # Что не входит в шаблон следующего проекта
 
 - Production deploy, `INDEXING_MODE=public`, живой AMS Hub и production SMTP.
-- Отдельный template repository (Phase L) — только по команде владельца после `reference-baseline-template-v2`.
+- Отдельный template repository — только по команде владельца после `reference-baseline-template-v3`.
 - Playwright как merge-gate.
 - Реализация Search / Favorites, journal content, `service` / `dual` / `crm` leads.
 - PostgreSQL, Payload, Prisma, CMS, `DATABASE_URL`.

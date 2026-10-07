@@ -10,6 +10,7 @@
 | `task-manager-inventory.v2.json` | Inventory Task Manager `souztf` (закрытая программа Freeze; не трогать) |
 | `DELIVERY_STATE.yaml` | Delivery state: **IN_PROGRESS**, эпик TF1 |
 | `SOUZ_DESIGN_SYSTEM.md` | Проектная дизайн-система Союза |
+| `template/PROJECT_DESIGN_SYSTEM.md` | Нейтральная заготовка дизайн-системы для нового клиента |
 | `standards/AMS_SITE_CORE.md` | Конституция сайтов AMS |
 | `standards/AMS_REALTY_CORE.md` | Профиль недвижимости |
 | `standards/AMS_UI_CORE.md` | UI-конституция |

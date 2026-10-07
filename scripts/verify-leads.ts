@@ -1,7 +1,8 @@
 import { randomBytes } from "node:crypto";
-import { mkdtempSync, readdirSync } from "node:fs";
+import { mkdtempSync, readFileSync, readdirSync } from "node:fs";
 import { tmpdir } from "node:os";
-import { join } from "node:path";
+import { dirname, join } from "node:path";
+import { fileURLToPath } from "node:url";
 import {
   FileLeadSpool,
   flushLeadSpool,
@@ -13,6 +14,7 @@ import {
 } from "../src/platform/leads";
 import { lead } from "../src/project/lead.config";
 
+const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 let failed = 0;
 
 function check(name: string, ok: boolean, detail = "") {
@@ -33,6 +35,21 @@ function makeSpool() {
 }
 
 async function main() {
+  const envSource = readFileSync(join(root, "src/platform/env.ts"), "utf8");
+  const leadTypes = readFileSync(join(root, "src/platform/leads/types.ts"), "utf8");
+  check("leads-route-direct-only", envSource.includes('z.enum(["direct"])'));
+  check(
+    "lead-transport-none-smtp-webhook",
+    envSource.includes('z.enum(["none", "smtp", "webhook"])'),
+  );
+  check(
+    "runtime-no-service-dual-crm-routes",
+    !leadTypes.includes('"service"') &&
+      !leadTypes.includes('"dual"') &&
+      !leadTypes.includes('"crm"') &&
+      leadTypes.includes('export type LeadRoute = "direct"'),
+  );
+
   const limiter = new WindowRateLimiter(
     lead.rateLimitMax,
     lead.rateLimitWindowMs,

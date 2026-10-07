@@ -116,6 +116,11 @@ function assertNoSilentSecretFallback(parsed: z.infer<typeof envSchema>): void {
   if (parsed.LEAD_TRANSPORT === "webhook" && !parsed.LEAD_WEBHOOK_URL) {
     throw new Error("LEAD_WEBHOOK_URL is required when LEAD_TRANSPORT=webhook");
   }
+  if (parsed.APP_ENV !== "local" && parsed.LEAD_TRANSPORT === "none") {
+    throw new Error(
+      "LEAD_TRANSPORT=none is only allowed in local/dev; staging/production forms require smtp or webhook",
+    );
+  }
 }
 
 export function assertLeadSpoolKey(raw: string): Buffer {
