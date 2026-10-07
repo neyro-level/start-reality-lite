@@ -9,6 +9,8 @@ const primaryUiText = {
     consentLabel: "Согласен на обработку",
     consentLinkLabel: "ПДн",
     submitLabel: "Отправить",
+    sendingLabel: "Отправка…",
+    requiredMessage: "Заполните имя, телефон и согласие.",
     retryMessage: "Не удалось отправить. Повторите.",
     transportDisabledMessage:
       "Приём заявок временно недоступен. Позвоните по телефону на сайте.",

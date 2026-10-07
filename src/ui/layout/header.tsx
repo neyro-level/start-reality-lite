@@ -13,6 +13,8 @@ export type LeadFormConfig = {
   consentLabel: string;
   consentLinkLabel: string;
   submitLabel: string;
+  sendingLabel: string;
+  requiredMessage: string;
   retryMessage: string;
   transportDisabledMessage: string;
   pageKey: string;
