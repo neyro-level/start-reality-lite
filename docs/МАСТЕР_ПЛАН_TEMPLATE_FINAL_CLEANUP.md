@@ -5,8 +5,8 @@ Plan ID: SOUZ-TEMPLATE-FINAL-CLEANUP
 Canonical file: docs/МАСТЕР_ПЛАН_TEMPLATE_FINAL_CLEANUP.md
 Predecessor: SOUZ-TEMPLATE-HARDENING v1 COMPLETE (tag reference-baseline-template-v2 @ 63360437)
 Version: v1
-Status: APPROVED
-Phase: IMPLEMENTATION
+Status: COMPLETE
+Phase: CLOSED
 approved_by: owner
 approved_at: 2026-10-07
 PROJECT_CLASS: COMMERCIAL

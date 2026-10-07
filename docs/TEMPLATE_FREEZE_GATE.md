@@ -1,10 +1,15 @@
 # Template Freeze Gate
 
-Статус на каноническом `main`:
+Статус:
 
-- `SOUZ-TEMPLATE-FREEZE` v2 **COMPLETE** — тег `reference-baseline-template-freeze` @ `ccba58d929dc342ce0baa2f40796d7057fb4de1c`
-- `SOUZ-TEMPLATE-HARDENING` v1 **COMPLETE** — тег `reference-baseline-template-v2` @ `63360437e4b59399ede2b64c0b893a8d66eef95a`
-- Активного плана нет. Production не делался.
+- `SOUZ-TEMPLATE-FREEZE` v2 **COMPLETE** — тег `reference-baseline-template-freeze` @ `ccba58d929dc342ce0baa2f40796d7057fb4de1c` (не изменять)
+- `SOUZ-TEMPLATE-HARDENING` v1 **COMPLETE** — тег `reference-baseline-template-v2` @ `63360437e4b59399ede2b64c0b893a8d66eef95a` (не изменять)
+- `SOUZ-TEMPLATE-FINAL-CLEANUP` v1 **COMPLETE** — после merge TF1 тег `reference-baseline-template-v3`
+- Production не делался.
+
+## Audit TF1.06
+
+`pnpm audit --prod` на exact head: high `braces` через transitive `shadcn` → `fast-glob` → `micromatch`. Patched versions: none. Отдельный эпик не открывался. `critical` обновлений нет.
 
 Ниже — исторический чеклист Freeze (K1) и DoD Hardening (TH9). Теги уже проставлены; раздел K1 не описывает будущую работу.
 

@@ -1,20 +1,21 @@
 plan_id: SOUZ-TEMPLATE-FINAL-CLEANUP
 plan_version: v1
-status: IN_PROGRESS
-plan_status: IN_PROGRESS
+status: COMPLETE
+plan_status: COMPLETE
 approved_by: owner
 approved_at: 2026-10-07
+completed_at: 2026-10-07
 canonical_plan: docs/МАСТЕР_ПЛАН_TEMPLATE_FINAL_CLEANUP.md
-current_epic: TF1
+current_epic: none
 next_ready: []
 current_branch: epic/TF1-final-template-cleanup
 delivery_mode: PR_ONLY
 delivery_profile: COMMERCIAL
 ams_profile: REALTY
 owner_pause: false
-closed_epics: []
-pending_epics:
+closed_epics:
   - TF1
+pending_epics: []
 predecessor:
   plan_id: SOUZ-TEMPLATE-HARDENING
   plan_version: v1
@@ -29,6 +30,13 @@ prior_freeze:
   status: COMPLETE
   freeze_tag: reference-baseline-template-freeze
   sha: ccba58d929dc342ce0baa2f40796d7057fb4de1c
+audit_prod:
+  command: pnpm audit --prod
+  critical: 0
+  high: 1
+  note: >
+    braces <=3.0.3 via shadcn/fast-glob/micromatch (GHSA-vfj7-8cjw-p6xm).
+    No patched version. Documented, no extra epic.
 notes: >
-  Final template cleanup IN_PROGRESS on epic/TF1-final-template-cleanup.
-  Previous freeze tags are immutable. No production.
+  Final template cleanup COMPLETE. Previous freeze tags are immutable.
+  Tag reference-baseline-template-v3 after merge-gate on exact SHA. No production.

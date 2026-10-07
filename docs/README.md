@@ -4,11 +4,11 @@
 
 | Файл | Роль |
 |---|---|
-| `МАСТЕР_ПЛАН_TEMPLATE_FINAL_CLEANUP.md` | Активный мастер-план `SOUZ-TEMPLATE-FINAL-CLEANUP` v1 |
+| `МАСТЕР_ПЛАН_TEMPLATE_FINAL_CLEANUP.md` | Мастер-план `SOUZ-TEMPLATE-FINAL-CLEANUP` v1 **COMPLETE** (не расширять) |
 | `МАСТЕР_ПЛАН_TEMPLATE_HARDENING.md` | Предшественник `SOUZ-TEMPLATE-HARDENING` v1 **COMPLETE** (не расширять) |
 | `ФИНАЛЬНЫЙ_МАСТЕР_ПЛАН.md` | Предшественник `SOUZ-TEMPLATE-FREEZE` v2 **COMPLETE** (не расширять) |
 | `task-manager-inventory.v2.json` | Inventory Task Manager `souztf` (закрытая программа Freeze; не трогать) |
-| `DELIVERY_STATE.yaml` | Delivery state: **IN_PROGRESS**, эпик TF1 |
+| `DELIVERY_STATE.yaml` | Delivery state: **COMPLETE**, активного плана нет |
 | `SOUZ_DESIGN_SYSTEM.md` | Проектная дизайн-система Союза |
 | `template/PROJECT_DESIGN_SYSTEM.md` | Нейтральная заготовка дизайн-системы для нового клиента |
 | `standards/AMS_SITE_CORE.md` | Конституция сайтов AMS |

@@ -6,8 +6,9 @@
 
 - Predecessor: `SOUZ-TEMPLATE-FREEZE` v2 COMPLETE — `docs/ФИНАЛЬНЫЙ_МАСТЕР_ПЛАН.md` (не расширять)
 - Hardening: `SOUZ-TEMPLATE-HARDENING` v1 **COMPLETE** — `docs/МАСТЕР_ПЛАН_TEMPLATE_HARDENING.md` (не расширять)
-- **Активный план:** `SOUZ-TEMPLATE-FINAL-CLEANUP` v1 — `docs/МАСТЕР_ПЛАН_TEMPLATE_FINAL_CLEANUP.md`
-- Freeze tag: `reference-baseline-template-v2` (не изменять)
+- Cleanup: `SOUZ-TEMPLATE-FINAL-CLEANUP` v1 **COMPLETE** — `docs/МАСТЕР_ПЛАН_TEMPLATE_FINAL_CLEANUP.md` (не расширять)
+- Freeze tags: `reference-baseline-template-freeze`, `reference-baseline-template-v2` (не изменять); после merge TF1 — `reference-baseline-template-v3`
+- **Активного плана нет.** Новый Plan ID — только по явной команде владельца.
 - Standards: `docs/standards/`
 - Design system: `docs/SOUZ_DESIGN_SYSTEM.md`
 - Predecessor archive: `docs/archive/` (не Source of Truth; Beads Lite не трогать)
