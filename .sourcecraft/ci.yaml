@@ -1,4 +1,4 @@
-# Soyuz Rostov Light Realty — COMMERCIAL SourceCraft CI.
+# Start Reality Lite — COMMERCIAL SourceCraft CI.
 # Push never runs validation (empty paths sentinel).
 # Pull requests run a light check. merge-gate is the manual exact-head gate.
 
