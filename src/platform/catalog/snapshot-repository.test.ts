@@ -78,7 +78,7 @@ describe("honest catalog DTO", () => {
           uid: "dvl-1",
           publicUrlId: "ddddd2",
           slug: "zhk-1",
-          name: "ЖК",
+          name: "TEST development",
           checkedAt: "2020-01-01T00:00:00Z",
         },
       ],
