@@ -87,9 +87,10 @@ merge force: false, delete_branch: true
 
 - `site.souz.config.ts` → `site.primary.config.ts`
 - `home.souz.config.ts` → `home.primary.config.ts`
-- Демо-идентичность в site, home, SEO, contacts
+- Демо-идентичность в site, home, SEO, contacts, grammar geo `primersk`
 - Denylist старых литералов в `template-check` и `verify-layers`
 - Комментарий бренда в `theme.css` нейтральный, значения цветов без изменений
+- SEO шаблона (не production-index): реестр всех pageKey; длины title/description; бренд в title только на служебных страницах; JSON-LD RealEstateAgent и BreadcrumbList; robots/sitemap от `INDEXING_MODE` (default `private`); canonical/resolver; legacy 308/410; price freshness. `pnpm verify:seo-contracts` остаётся gate.
 - Перед merge: `pnpm verify`
 
 # E2 — Фикстура и география

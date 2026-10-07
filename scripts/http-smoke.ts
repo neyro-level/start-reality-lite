@@ -101,15 +101,15 @@ export async function runExitHttpSmoke(root: string): Promise<void> {
   try {
     await waitForHealth();
     await expectStatus("/", 200);
-    await expectStatus("/rostov-na-donu/kvartiry/", 200);
+    await expectStatus("/primersk/kvartiry/", 200);
     await expectStatus("/kvartiry/listing-1-aaaaab/", 200);
     await expectStatus("/novostroyki/zhk-1/", 200);
     await expectStatus("/komanda/agent-1/", 200);
     await expectStatus("/this-page-does-not-exist-th7/", 404);
     await expectStatus("/blog/", 410);
-    const redirected = await expectStatus("/novostroyki-rostova/", 308);
+    const redirected = await expectStatus("/novostroyki-city/", 308);
     const location = redirected.headers.get("location") ?? "";
-    if (!location.includes("/rostov-na-donu/novostroyki/")) {
+    if (!location.includes("/primersk/novostroyki/")) {
       throw new Error(`308 location unexpected: ${location}`);
     }
     const health = await fetch(`${ORIGIN}/healthz`, { redirect: "follow" });
@@ -123,7 +123,7 @@ export async function runExitHttpSmoke(root: string): Promise<void> {
       headers: { "content-type": "application/json" },
       body: JSON.stringify({
         name: "Тест",
-        phone: "+79885552027",
+        phone: "+78000000000",
         consent: true,
         pageKey: "home",
       }),

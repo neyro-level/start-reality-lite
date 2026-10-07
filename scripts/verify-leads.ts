@@ -59,7 +59,7 @@ async function main() {
   );
   const noneSink = new MemoryLeadSink();
   const noneSpool = makeSpool().spool;
-  const phone = "+79885552027";
+  const phone = "+78000000000";
   const none = await submitLead(
     {
       name: "Test",

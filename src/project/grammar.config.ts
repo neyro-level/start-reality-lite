@@ -4,7 +4,7 @@ import { isAltFixture } from "./data.config";
 
 const primaryGrammar = {
   geoMode: "SINGLE_GEO",
-  geo: "rostov-na-donu",
+  geo: "primersk",
   categories: ["novostroyki", "kvartiry"],
   facets: {
     kvartiry: ["vtorichka"],

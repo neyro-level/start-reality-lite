@@ -86,9 +86,9 @@ const agents = Array.from({ length: 8 }, (_, index) => ({
 const contacts = [
   {
     projectId: PROJECT_ID,
-    phone: "+79885552027",
-    email: "office@example.com",
-    addressPublic: "переулок Доломановский, 19",
+    phone: "+78000000000",
+    email: "hello@start-realty.example",
+    addressPublic: "ул. Центральная, 1",
     hours: "Mo-Su 09:00-18:00",
     updatedAt: "2026-09-01T00:00:00Z",
   },

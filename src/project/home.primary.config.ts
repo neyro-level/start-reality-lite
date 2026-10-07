@@ -1,8 +1,8 @@
 export const homeContent = {
   hero: {
-    eyebrow: "НЕДВИЖИМОСТЬ В РОСТОВЕ-НА-ДОНУ",
+    eyebrow: "НЕДВИЖИМОСТЬ В ПРИМЕРСКЕ",
     titleLine1: "Новостройки и квартиры",
-    titleLine2: "в Ростове-на-Дону",
+    titleLine2: "в Примерске",
     supporting:
       "Помогаем сравнить предложения рынка, выбрать подходящий объект и пройти путь сделки с понятным сопровождением.",
     ctaLabel: "Подобрать вариант",
@@ -25,7 +25,7 @@ export const homeContent = {
     { pageKey: "contacts", label: "Помощь специалиста", icon: "headphones" },
   ],
   developments: {
-    title: "Новостройки Ростова-на-Дону",
+    title: "Новостройки Примерска",
     catalogPageKey: "catNovostroyki",
     selectionCard: {
       title: "Поможем подобрать новостройку",
@@ -51,7 +51,7 @@ export const homeContent = {
     servicePageKey: "yurist",
   },
   trust: {
-    eyebrow: "О СОЮЗЕ ЗАСТРОЙЩИКОВ",
+    eyebrow: "О КОМПАНИИ",
     titleLine1: "Помогаем выбрать недвижимость",
     titleLine2: "без лишней сложности",
     paragraph1:

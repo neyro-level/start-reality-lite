@@ -17,7 +17,7 @@ describe("lead spool", () => {
     await submitLead(
       {
         name: "Stable",
-        phone: "+79885552027",
+        phone: "+78000000000",
         consent: true,
         pageKey: "contacts",
       },
@@ -42,7 +42,7 @@ describe("lead spool", () => {
     const restarted = new FileLeadSpool(dir, key);
     const pending = restarted.listPending();
     expect(pending).toHaveLength(1);
-    expect(pending[0]?.delivery.phone).toBe("+79885552027");
+    expect(pending[0]?.delivery.phone).toBe("+78000000000");
     fail = false;
     const delivered = await flushLeadSpool(
       restarted,

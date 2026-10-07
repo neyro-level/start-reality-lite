@@ -4,12 +4,12 @@ import { isAltFixture } from "../data.config";
 
 const primaryLegacyRules: LegacyRule[] = [
   {
-    from: "/novostroyki-rostova/",
+    from: "/novostroyki-city/",
     status: 308,
     toPageKey: "catNovostroyki",
   },
   {
-    from: "/kvartiry-rostova/",
+    from: "/kvartiry-city/",
     status: 308,
     toPageKey: "catKvartiry",
   },

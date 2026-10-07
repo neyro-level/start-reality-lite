@@ -16,15 +16,14 @@ test.describe("I6 Freeze smoke", () => {
   test("catalog entry shows grid", async ({ page }) => {
     const href =
       buildHref(grammar, features, "catNovostroyki") ??
-      "/rostov-na-donu/novostroyki/";
+      "/primersk/novostroyki/";
     await page.goto(href, { waitUntil: "networkidle" });
     await expect(page.getByTestId("catalog-grid")).toBeVisible();
   });
 
   test("property detail from catalog", async ({ page }) => {
     const catalogPath =
-      buildHref(grammar, features, "catKvartiry") ??
-      "/rostov-na-donu/kvartiry/";
+      buildHref(grammar, features, "catKvartiry") ?? "/primersk/kvartiry/";
     await page.goto(catalogPath, { waitUntil: "networkidle" });
     await page.getByTestId("catalog-grid").getByRole("link").first().click();
     await expect(page.getByTestId("entity-detail")).toBeVisible();
@@ -33,7 +32,7 @@ test.describe("I6 Freeze smoke", () => {
   test("development detail from catalog", async ({ page }) => {
     const catalogPath =
       buildHref(grammar, features, "catNovostroyki") ??
-      "/rostov-na-donu/novostroyki/";
+      "/primersk/novostroyki/";
     await page.goto(catalogPath, { waitUntil: "networkidle" });
     await page.getByTestId("catalog-grid").getByRole("link").first().click();
     await expect(page.getByTestId("entity-detail")).toBeVisible();
@@ -62,7 +61,7 @@ test.describe("I6 Freeze smoke", () => {
   });
 
   test("legacy 308 redirect fixture", async ({ request }) => {
-    const response = await request.get("/novostroyki-rostova/", {
+    const response = await request.get("/novostroyki-city/", {
       maxRedirects: 0,
     });
     expect(response.status()).toBe(308);

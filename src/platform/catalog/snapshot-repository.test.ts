@@ -58,7 +58,7 @@ describe("honest catalog DTO", () => {
   it("uses listing priceCheckedAt for public price", async () => {
     const now = new Date("2026-10-07T00:00:00Z");
     const contact = {
-      phone: "+79885552027",
+      phone: "+78000000000",
       email: null,
       messengers: null,
       address: null,

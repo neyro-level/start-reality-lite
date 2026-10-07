@@ -14,7 +14,7 @@ import { verifyCandidate } from "../src/platform/snapshot/verify";
 import { data } from "../src/project/data.config";
 import { features as primaryFeatures } from "../src/project/features.config";
 import { grammar as primaryGrammar } from "../src/project/grammar.config";
-import { site as primarySite } from "../src/project/site.souz.config";
+import { site as primarySite } from "../src/project/site.primary.config";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 const altDir = "fixtures/fixture-alt";
@@ -172,10 +172,10 @@ check(
 check("overlay-theme", existsSync(join(root, altDir, "project/theme.css")));
 
 const primaryBrandNeedles = [
-  "Союз Застройщиков",
-  "souz-home.ru",
-  "szrostov-promo",
-  "О СОЮЗЕ ЗАСТРОЙЩИКОВ",
+  "Старт Недвижимость",
+  "start-realty.example",
+  "hello@start-realty",
+  "Примерск",
 ];
 
 function collectFiles(dir: string, files: string[] = []): string[] {

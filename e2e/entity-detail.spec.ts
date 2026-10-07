@@ -8,8 +8,7 @@ test.describe("H4 entity detail shells", () => {
 
   test("property page renders entity detail block", async ({ page }) => {
     const catalogPath =
-      buildHref(grammar, features, "catKvartiry") ??
-      "/rostov-na-donu/kvartiry/";
+      buildHref(grammar, features, "catKvartiry") ?? "/primersk/kvartiry/";
     await page.goto(catalogPath, { waitUntil: "networkidle" });
     const cardLink = page.getByTestId("catalog-grid").getByRole("link").first();
     await cardLink.click();
@@ -20,7 +19,7 @@ test.describe("H4 entity detail shells", () => {
   test("development page renders entity detail block", async ({ page }) => {
     const catalogPath =
       buildHref(grammar, features, "catNovostroyki") ??
-      "/rostov-na-donu/novostroyki/";
+      "/primersk/novostroyki/";
     await page.goto(catalogPath, { waitUntil: "networkidle" });
     await page.getByTestId("catalog-grid").getByRole("link").first().click();
     await expect(page.getByTestId("entity-detail")).toBeVisible();

@@ -11,6 +11,9 @@ const forbiddenLiterals = [
   "rostov-na-donu",
   "szrostov",
   "zastroyshchiki",
+  "Доломановский",
+  "+79885552027",
+  "szrostov-promo",
 ];
 
 const uiForbiddenImportFragments = [

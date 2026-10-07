@@ -38,7 +38,7 @@ describe("runtime worker", () => {
     await submitLead(
       {
         name: "Local",
-        phone: "+79885552027",
+        phone: "+78000000000",
         consent: true,
         pageKey: "contacts",
       },
