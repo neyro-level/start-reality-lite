@@ -154,13 +154,15 @@ export async function runWorkerPass(input: {
     return result;
   }
   try {
-    await (input.syncSnapshot ??
+    await (
+      input.syncSnapshot ??
       (() =>
         runSnapshotJobs({
           cwd: input.cwd,
           env: input.env,
           reservedRoots: input.reservedRoots,
-        })))();
+        }))
+    )();
     result.snapshot = "ok";
   } catch (error) {
     result.snapshot = "error";

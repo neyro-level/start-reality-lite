@@ -175,11 +175,8 @@ export function hideListingPrice(
   if (!thresholds) {
     return !listingPriceCheckedAt(listing);
   }
-  return evaluatePriceFreshness(
-    listingPriceCheckedAt(listing),
-    now,
-    thresholds,
-  ).hidePrice;
+  return evaluatePriceFreshness(listingPriceCheckedAt(listing), now, thresholds)
+    .hidePrice;
 }
 
 export function minPriceForDevelopment(

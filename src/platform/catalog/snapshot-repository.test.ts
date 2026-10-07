@@ -70,7 +70,7 @@ describe("honest catalog DTO", () => {
       publicUrlId: "ccccc2",
       propertyType: "APARTMENT" as const,
       developmentUid: "dvl-1",
-      price: { amount: "450000000", currency: "RUB", scale: 2 },
+      price: { amount: "450000000", currency: "RUB", scale: 2 as const },
     };
     const snapshot = {
       developments: [
@@ -121,7 +121,7 @@ describe("honest catalog DTO", () => {
         ...base,
         uid: "stale",
         publicUrlId: "fffff2",
-        price: { amount: "100000000", currency: "RUB", scale: 2 },
+        price: { amount: "100000000", currency: "RUB", scale: 2 as const },
         priceCheckedAt: "2026-07-01T00:00:00Z",
       },
     ]).listDevelopments();

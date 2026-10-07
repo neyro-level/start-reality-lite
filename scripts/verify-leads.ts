@@ -1,5 +1,5 @@
 import { randomBytes } from "node:crypto";
-import { mkdtempSync, readFileSync, readdirSync } from "node:fs";
+import { mkdtempSync, readdirSync, readFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -36,7 +36,10 @@ function makeSpool() {
 
 async function main() {
   const envSource = readFileSync(join(root, "src/platform/env.ts"), "utf8");
-  const leadTypes = readFileSync(join(root, "src/platform/leads/types.ts"), "utf8");
+  const leadTypes = readFileSync(
+    join(root, "src/platform/leads/types.ts"),
+    "utf8",
+  );
   check("leads-route-direct-only", envSource.includes('z.enum(["direct"])'));
   check(
     "lead-transport-none-smtp-webhook",

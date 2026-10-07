@@ -37,9 +37,9 @@ export function LeadForm({
 }) {
   const formId = useId();
   const errorId = `${formId}-error`;
-  const [error, setError] = useState<
-    "required" | "transport" | "retry" | null
-  >(null);
+  const [error, setError] = useState<"required" | "transport" | "retry" | null>(
+    null,
+  );
   const [consent, setConsent] = useState(false);
   const [invalid, setInvalid] = useState({
     name: false,
