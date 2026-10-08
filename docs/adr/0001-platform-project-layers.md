@@ -3,7 +3,7 @@
 Status: accepted  
 Date: 2026-10-03  
 Plan origin: SZ-ROSTOV-LITE-MAIN v1 (archived)  
-Current plan: SRL-NEUTRAL-TEMPLATE v1 (`docs/МАСТЕР_ПЛАН_SRL_NEUTRAL.md`)
+Current plan: none. Активного плана нет. ADR слоёв остаётся принятым. Закрытый канон Neutral — `docs/archive/МАСТЕР_ПЛАН_SRL_NEUTRAL.md` (не расширять).
 
 ## Decision
 

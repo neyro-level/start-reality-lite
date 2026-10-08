@@ -1,42 +1,71 @@
-# Start Reality Lite
+# AGENTS.md — Start Reality Lite → клиентский сайт
 
-Локальный router. Глобальный канон — `~/.codex/AGENTS.md`.
+**Назначение:** единственная точка входа для AI-разработчика после копирования `start-reality-lite` в **новую папку / новый клиентский репозиторий**.
 
-## Plan
+Когда владелец говорит «начинаем разработку сайта», считай, что это **адаптация готового Realty Lite шаблона**, а не создание приложения с нуля. Не запускай альтернативные сценарии «аудит / активация / релиз», не создавай `PROJECT_BRIEF.md` и `PROJECT_PLAN.md` без отдельного запроса. Исходные требования клиента уже предоставляются владельцем в текущем рабочем контексте.
 
-- Neutral: `SRL-NEUTRAL-TEMPLATE` v1 **COMPLETE** — `docs/МАСТЕР_ПЛАН_SRL_NEUTRAL.md` (не расширять)
-- **Активного плана нет.** Новый Plan ID — только по явной команде владельца.
-- Predecessor: `SOUZ-TEMPLATE-FINAL-CLEANUP` v1 COMPLETE — `docs/МАСТЕР_ПЛАН_TEMPLATE_FINAL_CLEANUP.md` (не расширять)
-- Hardening: `SOUZ-TEMPLATE-HARDENING` v1 **COMPLETE** — `docs/МАСТЕР_ПЛАН_TEMPLATE_HARDENING.md` (не расширять)
-- Freeze: `SOUZ-TEMPLATE-FREEZE` v2 COMPLETE — `docs/ФИНАЛЬНЫЙ_МАСТЕР_ПЛАН.md` (не расширять)
-- Freeze tags: `reference-baseline-template-freeze`, `reference-baseline-template-v2`, `reference-baseline-template-v3` (не изменять)
-- Standards: `docs/standards/`
-- Design system: `docs/SOUZ_DESIGN_SYSTEM.md` (палитра шаблона)
-- Predecessor archive: `docs/archive/` (не Source of Truth; Beads Lite не трогать)
+## 1. Что читать перед изменениями
 
-Порядок чтения:
+1. `docs/standards/AMS_SITE_CORE.md` — базовая архитектура, безопасность, SEO, заявки.
+2. `docs/standards/AMS_REALTY_CORE.md` — snapshot, Repository, сущности, URL/lifecycle, свежесть цен, Exit Mode.
+3. `docs/standards/AMS_UI_CORE.md` — UI, токены, shadcn, server-first, доступность.
+4. `docs/NEW_SITE_SETUP.md` — инструкция преобразования шаблона в клиентский проект.
+5. Фактическую структуру проекта и его конфигурации: `src/project/**`, `src/app/**`, `src/ui/**`, `docs/seo/**`, `package.json`.
+6. Дизайн: `docs/PROJECT_DESIGN_SYSTEM.md` (если создан для клиента), иначе `docs/TEMPLATE_DESIGN_SYSTEM.md` / проектный шаблон в `docs/template/PROJECT_DESIGN_SYSTEM.md`.
+7. Действующие ADR, если есть, и фактические ограничения текущего репозитория.
+
+**Приоритет:** явное решение владельца → принятые ADR / опубликованные URL → фактическое состояние кода и версий → SITE CORE → REALTY CORE → UI CORE → утверждённая проектная дизайн-система → референсы. Случайное нарушение конституции в коде не становится правилом.
+
+Если отсутствует один из трёх Core — остановись и сообщи о конкретно отсутствующем файле, не заменяя его старой архивной версией.
+
+## 2. Границы архитектуры
+
+Сохранять модель:
 
 ```text
-AMS SITE CORE
-→ AMS REALTY CORE
-→ AMS UI CORE
-→ SOUZ DESIGN SYSTEM
-→ Project / ADR
-→ Delivery State
-→ Task
+External Provider / local fixture
+  → signed snapshot / last-good
+  → SnapshotRepository
+  → DTO / ViewModel
+  → Next.js App Router
+  → src/ui/**
 ```
 
-Приоритет при конфликте: явное решение владельца → ADR проекта → фактический код/lockfile → SITE CORE → REALTY CORE → UI CORE → дизайн-система → чат.
+- `src/platform/**` — общее ядро; **не менять при настройке клиента**. Включая Repository contracts, snapshot verification/sync, lead spool, security и URL/SEO engine. Исключение — явная архитектурная задача владельца, с зафиксированным решением и проверкой влияния на другие сайты.
+- `src/ui/primitives/**` — общие shadcn/Radix primitives; не копировать и не переписывать под каждую страницу. При отличиях сначала **REUSE → VARIANT → COMPOSE → CREATE**.
+- `src/project/**` — основной изменяемый слой: бренд, тексты, тема, страницы, меню, география, SEO-настройки, feature flags, контакты, медиа и lead destination.
+- `src/ui/sections/**` и `src/ui/domain/**` — разрешено адаптировать/добавлять при изменении структуры страниц с соблюдением UI Core; без прямого чтения Provider, Repository, файлов или клиентской конфигурации внутри UI.
+- `src/app/**` — маршруты и page composition; сохранять действующий общий router, не создавать дублирующую систему маршрутизации ради новых страниц.
+- `docs/seo/**` — SEO Registry и утверждённые поисковые интенты клиента.
 
-## Invariants
+**Не добавлять без измеренной потребности и согласования:** БД, Payload, Prisma, CMS, Redis, отдельный backend, поисковый сервис, page builder, второй UI kit, второй icon set. Не переводить целую страницу в `"use client"` из-за одного интерактивного элемента.
 
-- `AMS_PROFILE=REALTY`, `PROJECT_CLASS=COMMERCIAL`, `DELIVERY_PROFILE=COMMERCIAL`
-- `DATA_MODE=snapshot | local`; БД нет: запрещены PostgreSQL, Payload, Prisma, CMS и `DATABASE_URL`
-- Git: SourceCraft primary, `PR_ONLY`, лёгкая проверка на PR, один ручной `merge-gate` перед merge
-- Production этим планом не делается
-- Платформа: `src/platform/**`. Проектный слой: `src/project/**` и `docs/seo/**`
-- Единственная проектная дизайн-система: `docs/SOUZ_DESIGN_SYSTEM.md`
+## 3. Как менять страницы
 
-## Delivery state
+- **Главная `/`:** проектные тексты — `src/project/home*.config.ts`; данные/ссылки — `src/project/build-home-model.ts`; композиция — `src/ui/sections/home-page.tsx`; маршрут — `src/app/page.tsx` и `src/app/site-page.tsx`.
+- **Меню и Footer:** `src/project/navigation.config.ts`, `src/project/features.config.ts`; визуальные компоненты — `src/ui/layout/**`.
+- **Каталоги и страницы объектов/ЖК/агентов:** сохранить Repository → DTO и имеющуюся page composition; изменить проектную конфигурацию, а не читать raw snapshot в UI.
+- **Новая страница:** добавить `pageKey`/правило в `src/project/grammar.config.ts`, SEO-запись в `docs/seo/SEO_REGISTRY_SEED.csv`, контент/композицию в проектный слой; использовать `src/app/[...path]/page.tsx` и существующий `SitePage`, когда это уместно. Новый app-route создавать только если существующая грамматика объективно недостаточна.
+- **Снятая страница:** удалить из навигации и sitemap через flags/SEO; для опубликованного URL сохранить осмысленный 308 или 410, не перенаправлять всё на главную.
 
-Текущее состояние — `docs/DELIVERY_STATE.yaml`.
+Один поисковый интент — один URL-владелец; не индексировать пустые заготовки, произвольные фильтры и новые страницы до готовности. Не выдумывать цены, отзывы, стаж, адреса, реквизиты, сотрудников и преимущества.
+
+## 4. Работа с копией шаблона
+
+- Изменять **только клиентскую копию**, не исходный `start-reality-lite`.
+- Demo-бренд, `fixture-demo`, телефон, адрес, ИНН и `.example` — исключительно тестовые данные. Не выпускать их как клиентские факты.
+- Стартовая синяя палитра разрешена; менять её только по требованиям бренда через `src/project/theme.css` и одну утверждённую проектную дизайн-систему.
+- `DATA_MODE=local` допустим для разработки. Когда AMS Data Hub будет готов, подключение `DATA_MODE=snapshot` — отдельная интеграционная задача. Не имитировать готовый production Hub.
+- Journal, Search, Favorites включать только при реально реализованных маршрутах/функциях; выключенный модуль не должен порождать публичную навигацию и sitemap.
+- Реквизиты, политика ПДн, согласие и transport заявок требуют реальных данных клиента до публичного запуска.
+
+## 5. Порядок работы и Git
+
+1. Прочитать документы из §1 и осмотреть фактические файлы.
+2. Сопоставить предоставленные владельцем требования с существующими `src/project/**` и маршрутизацией.
+3. **Сразу приступить к допустимым правкам** по заданию; задавать только узкий вопрос, если без него нельзя сделать корректный выбор. Не начинать с анкет, самостоятельных брифов или большого мастер-плана.
+4. Сохранять код простым и переиспользуемым, не трогать защищённое ядро.
+5. После изменений выполнять релевантные проверки (`pnpm lint`, `pnpm exec tsc --noEmit`, `pnpm build`; другие — если затронут соответствующий контракт). Честно сообщать, что проверено, а что нет.
+6. В клиентском репозитории соблюдать настроенный Git-процесс: небольшие commit/push, PR и merge-gate там, где он предусмотрен. Не делать direct push в `main`, если это запрещено.
+
+**Указания по конкретным файлам и последовательности трансформации:** `docs/NEW_SITE_SETUP.md`.

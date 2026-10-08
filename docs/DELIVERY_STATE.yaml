@@ -5,7 +5,7 @@ plan_status: COMPLETE
 approved_by: owner
 approved_at: 2026-10-07
 completed_at: 2026-10-07
-canonical_plan: docs/МАСТЕР_ПЛАН_SRL_NEUTRAL.md
+canonical_plan: docs/archive/МАСТЕР_ПЛАН_SRL_NEUTRAL.md
 current_epic: none
 next_ready: []
 current_branch: epic/E4-copy-contract

@@ -71,9 +71,10 @@ check(
 );
 check(
   "gate1-freeze-doc",
-  readFileSync(join(root, "docs/TEMPLATE_FREEZE_GATE.md"), "utf8").includes(
-    "verify:freeze",
-  ),
+  readFileSync(
+    join(root, "docs/archive/TEMPLATE_FREEZE_GATE.md"),
+    "utf8",
+  ).includes("verify:freeze"),
 );
 
 check(

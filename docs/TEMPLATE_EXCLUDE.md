@@ -9,6 +9,11 @@
 - клиентские медиа-оригиналы и внешние CDN-аккаунты;
 - production deploy, `INDEXING_MODE=public`, живой AMS Hub и production SMTP.
 
+Не принимать за Source of Truth:
+
+- `docs/archive/` — закрытые мастер-планы Freeze / Hardening / Neutral и inventory;
+- исторические теги `reference-baseline-template-*`.
+
 Вне scope шаблона как продукта:
 
 - Playwright как merge-gate;

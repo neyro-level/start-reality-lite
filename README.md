@@ -1,6 +1,6 @@
 # Start Reality Lite
 
-Коммерческий AMS Realty Lite шаблон на Next.js 16 без БД: snapshot / local, Repository, дизайн-система с палитрой `--sr-*`.
+Коммерческий AMS Realty Lite шаблон на Next.js 16 без БД: snapshot / local, Repository, дизайн-система `docs/TEMPLATE_DESIGN_SYSTEM.md`.
 
 ## Стек
 
@@ -20,6 +20,8 @@ corepack pnpm verify
 
 ## Новый проект
 
-Меняется только `src/project/**`, `docs/seo/**` и fixture. Порядок замен — `docs/NEW_PROJECT.md`. Что не копировать — `docs/TEMPLATE_EXCLUDE.md`.
+После копирования чистого HEAD AI читает корневой `AGENTS.md`, три `docs/standards/AMS_*_CORE.md` и `docs/NEW_SITE_SETUP.md`. Чеклист файлов — `docs/NEW_PROJECT.md`. Что не копировать как канон — `docs/TEMPLATE_EXCLUDE.md`.
+
+Демо-реквизиты и `fixture-demo` — тестовые данные.
 
 Проверка двух брендов: `PROJECT_FIXTURE=fixture-alt` и `pnpm template:check`.

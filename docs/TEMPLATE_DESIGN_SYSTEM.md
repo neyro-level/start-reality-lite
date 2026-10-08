@@ -1,4 +1,4 @@
-# SOUZ DESIGN SYSTEM
+# TEMPLATE DESIGN SYSTEM
 
 **Проект:** Start Reality Lite (нейтральный шаблон агентства)  
 **Назначение:** дизайн-система шаблона сайта недвижимости на Next.js  
@@ -1640,7 +1640,7 @@ Client islands:
 - shadcn/ui является primitive layer;
 - Lucide является единым icon set;
 - semantic tokens реализованы;
-- брендовая палитра Союза не хардкодится в JSX;
+- брендовая палитра не хардкодится в JSX;
 - radius ≈ 5px применяется системно;
 - typography roles едины;
 - публичный H2 использует проектную секционную шкалу;

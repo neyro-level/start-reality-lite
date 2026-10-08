@@ -2,23 +2,27 @@
 
 Карта канона Start Reality Lite.
 
+## Действующие
+
 | Файл | Роль |
 |---|---|
-| `МАСТЕР_ПЛАН_SRL_NEUTRAL.md` | Мастер-план `SRL-NEUTRAL-TEMPLATE` v1 **COMPLETE** (не расширять) |
-| `МАСТЕР_ПЛАН_TEMPLATE_FINAL_CLEANUP.md` | Предшественник `SOUZ-TEMPLATE-FINAL-CLEANUP` v1 **COMPLETE** (не расширять) |
-| `МАСТЕР_ПЛАН_TEMPLATE_HARDENING.md` | Предшественник `SOUZ-TEMPLATE-HARDENING` v1 **COMPLETE** (не расширять) |
-| `ФИНАЛЬНЫЙ_МАСТЕР_ПЛАН.md` | Предшественник `SOUZ-TEMPLATE-FREEZE` v2 **COMPLETE** (не расширять) |
-| `task-manager-inventory.v2.json` | Inventory Task Manager `souztf` (закрытая программа Freeze; не трогать) |
-| `DELIVERY_STATE.yaml` | Delivery state: **COMPLETE**, активного плана нет |
-| `SOUZ_DESIGN_SYSTEM.md` | Дизайн-система шаблона (палитра `--sr-*`) |
-| `template/PROJECT_DESIGN_SYSTEM.md` | Заготовка дизайн-системы для нового клиента |
+| [`../AGENTS.md`](../AGENTS.md) | Вход AI: слои, порядок чтения, границы platform / project |
 | `standards/AMS_SITE_CORE.md` | Конституция сайтов AMS |
 | `standards/AMS_REALTY_CORE.md` | Профиль недвижимости |
 | `standards/AMS_UI_CORE.md` | UI-конституция |
-| `adr/0001-platform-project-layers.md` | Слои platform / project |
-| `EXIT_BUNDLE.md` | Состав Exit Bundle |
-| `NEW_PROJECT.md` | Порядок замены проектного слоя |
-| `OPEN_QUESTIONS.md` | Открытые вопросы владельца |
-| `archive/` | Предшественник Lite / UI Core 5 / Hub 3.1.2 — не Source of Truth |
+| `NEW_SITE_SETUP.md` | Единственная AI-инструкция адаптации копии шаблона |
+| `TEMPLATE_DESIGN_SYSTEM.md` | Дизайн-система шаблона (палитра `--sr-*`, primary `#014eba`) |
+| `template/PROJECT_DESIGN_SYSTEM.md` | Заготовка клиентской дизайн-системы |
+| `NEW_PROJECT.md` | Короткий чеклист копирования HEAD и замены файлов |
+| `TEMPLATE_EXCLUDE.md` | Что не копировать и не читать как канон |
+| `adr/0001-platform-project-layers.md` | Принятый ADR слоёв platform / project |
+| `seo/` | SEO Registry и поисковые интенты шаблона |
+| `DELIVERY_STATE.yaml` | Delivery state: **COMPLETE**, активного плана нет |
+| `OPEN_QUESTIONS.md` | Открытые вопросы владельца (не блокируют шаблон) |
+| `EXIT_BUNDLE.md` | Операционный список handoff; **не** клиентский канон и **не** мастер-план |
 
-Title, Description и H1 задаются через `docs/seo/SEO_REGISTRY_SEED.csv` и `src/project/seo.config.ts`.
+Title, Description и H1 задаются через `docs/seo/SEO_REGISTRY_SEED.csv` и `src/project/seo.config.ts`. Демо-бренд «Старт Недвижимость», Примерск, `fixture-demo` и `.example` — тестовые данные шаблона.
+
+## Архив
+
+[`archive/`](archive/) — закрытые программы Freeze / Hardening / Cleanup / Neutral. **Не Source of Truth.** Не читать как действующие требования и не расширять.

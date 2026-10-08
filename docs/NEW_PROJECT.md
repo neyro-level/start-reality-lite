@@ -1,10 +1,12 @@
 # Новый проект на Start Reality Lite
 
-Этот репозиторий и есть шаблон. Копировать **чистый HEAD** (`git archive` или новый remote без истории), не весь git-лог: в истории останутся старые клиентские коммиты.
+Этот репозиторий и есть шаблон. Копировать **чистый HEAD** (`git archive` или новый remote без истории), не весь git-лог.
 
-Меняется только **проектный слой** и данные клиента. Не трогать платформу без отдельной причины и ADR.
+Порядок работы AI после копирования задаёт [`docs/NEW_SITE_SETUP.md`](NEW_SITE_SETUP.md). Этот файл — короткий чеклист файлов, не второй сценарий планов или анкет.
 
-`docs/SOUZ_DESIGN_SYSTEM.md` — дизайн-система шаблона с палитрой `--sr-*`. Новый клиент заполняет `docs/template/PROJECT_DESIGN_SYSTEM.md`. Цвета в `theme.css` оставлять, если бренд это допускает.
+Демо-бренд «Старт Недвижимость», `fixture-demo`, телефон, адрес, ИНН и `.example` — тестовые данные. Не выпускать их как факты клиента.
+
+`docs/TEMPLATE_DESIGN_SYSTEM.md` — базовая дизайн-система шаблона (палитра `--sr-*`, primary `#014eba`). Клиентская заготовка — `docs/template/PROJECT_DESIGN_SYSTEM.md`; при отличиях бренда создать `docs/PROJECT_DESIGN_SYSTEM.md`. Цвета в `theme.css` оставлять, если бренд это допускает.
 
 ## Короткий чеклист замены
 
@@ -16,9 +18,10 @@ fixture / snapshot
 leads destination
 analytics
 grammar geo и районы
+навигация и секции
 ```
 
-## Что меняет новый клиент
+## Что можно менять
 
 | Область | Файлы |
 |--------|--------|
@@ -27,12 +30,15 @@ grammar geo и районы
 | Home model | `src/project/build-home-model.ts`, `src/project/home-href.ts` |
 | UI copy | `src/project/ui-text.config.ts` |
 | Theme | `src/project/theme.css` |
-| Design system | `docs/template/PROJECT_DESIGN_SYSTEM.md` |
-| Grammar | `src/project/grammar.config.ts` |
+| Design system | `docs/template/PROJECT_DESIGN_SYSTEM.md` → при необходимости `docs/PROJECT_DESIGN_SYSTEM.md` |
+| Grammar / URL | `src/project/grammar.config.ts` |
 | Features | `src/project/features.config.ts` |
 | Navigation | `src/project/navigation.config.ts` |
 | SEO | `src/project/seo.config.ts`, `src/project/seo-vars.ts`, `docs/seo/SEO_REGISTRY_SEED.csv` |
 | Pages | `src/project/utility-pages.config.ts`, `src/project/starter-pages.config.ts`, `src/project/entity-pages.config.ts`, `src/project/catalog-entry.config.ts`, `src/project/entity-detail-model.ts` |
+| Page composition | `src/app/site-page.tsx` |
+| Sections | `src/ui/sections/**` |
+| Domain UI | `src/ui/domain/**` при реальной необходимости |
 | Legacy | `src/project/redirects/legacy.ts` |
 | Data | `src/project/data.config.ts`, `src/project/runtime.ts` |
 | Media | `src/project/media.config.ts`, `src/project/image-loader.ts` |
@@ -60,7 +66,7 @@ grammar geo и районы
 - canonical / metadata resolver в runtime;
 - JSON-LD `RealEstateAgent` + `BreadcrumbList`;
 - `INDEXING_MODE` default `private` (public — только перед реальным релизом);
-- `pnpm verify:seo-contracts` (длины title/description, уникальность, noindex starter-страниц, sitemap без дублей).
+- `pnpm verify:seo-contracts`.
 
 `LEAD_TRANSPORT=none` только для local/dev. В staging/production при включённых формах нужен `smtp` или `webhook`.
 
@@ -68,32 +74,19 @@ Search, Favorites и Journal остаются `DISABLED` до отдельной
 
 Для dual-build используйте `PROJECT_FIXTURE=fixture-alt`. `template:check` собирает primary и alt и сканирует `.next` на литералы primary-бренда.
 
-## Что не менять без отдельной причины
+## Что защищено
 
 ```text
 src/platform/**
 src/ui/primitives/**
-Repository contracts
-snapshot machinery
-lead spool
-URL machinery
-verification scripts
+Repository / snapshot / identity / lifecycle
+encrypted lead spool
+security mechanisms
+docs/standards/AMS_*_CORE.md
 ```
 
-- Нет PostgreSQL, Payload, Prisma, CMS
-- Runtime UI импортируется только через `@/ui`. Слоя `src/platform/ui/` нет.
+Изменения защищённых контрактов — только по отдельному решению владельца, не ради удобства кастомизации.
 
-См. также `docs/TEMPLATE_EXCLUDE.md`.
+Нет PostgreSQL, Payload, Prisma, CMS. Runtime UI импортируется только через `@/ui`.
 
-## Порядок запуска
-
-1. Скопировать чистый HEAD этого репозитория.
-2. Заполнить конфиги, `PROJECT_DESIGN_SYSTEM`, SEO-реестр и fixture; подписать manifest (`scripts/resign-fixture-alt.ts` как образец).
-3. Настроить provider settings и lead destination.
-4. `pnpm verify:layers` — нет project literals / brand colors в platform и UI.
-5. `pnpm verify:seo-contracts` — реестр, canonical, robots/sitemap, JSON-LD.
-6. `pnpm template:check` — primary + alt без правок platform; `.next` alt без primary-бренда.
-7. `pnpm verify:exit-mode` и `pnpm verify:performance`.
-8. Перед Freeze: `pnpm verify:freeze` и полный `pnpm verify`.
-
-Подробные gate-чеклисты: `docs/TEMPLATE_FREEZE_GATE.md`.
+См. также `docs/TEMPLATE_EXCLUDE.md` и `docs/NEW_SITE_SETUP.md`.
